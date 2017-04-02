@@ -23,7 +23,9 @@ class App extends React.Component{
   }
 
   handleManagerSave(selectedManager, employeeId){
+
     selectedManager === '' ? selectedManager=null : selectedManager;
+    //console.log('manager:',selectedManager,'employee:', employeeId)
     axios.put(`/api/users/${ employeeId }`,{ managerId: selectedManager })
     .then( response => response.data)
     .then( users => this.setState({ users }))

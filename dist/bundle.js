@@ -13090,13 +13090,9 @@ var UsersEdit = function UsersEdit(props) {
         { className: 'form-group' },
         _react2.default.createElement(
           'select',
-          { className: 'form-control', id: employee.id, onChange: onManagerSelect },
+          { className: 'form-control', defaultValue: employee.manager ? employee.manager.id : '', id: employee.id, onChange: onManagerSelect },
           usersWithNone.map(function (user, id) {
-            return employee.manager && employee.manager.id === user.id ? _react2.default.createElement(
-              'option',
-              { key: id, value: user.id, selected: true },
-              user.name
-            ) : _react2.default.createElement(
+            return _react2.default.createElement(
               'option',
               { key: id, value: user.id },
               user.name
@@ -13140,6 +13136,24 @@ exports.default = UsersEdit;
         <Link to="users">Cancel</Link>
       </div>
     )*/
+
+/*const select = (employee) => (
+   <div className="panel-body">
+    {console.log(employee)}
+    <div className='form-group'>
+      <select className='form-control' id={ employee.id } onChange={ onManagerSelect }>
+      { usersWithNone.map( (user,id) =>(
+          employee.manager && employee.manager.id === user.id ?
+              <option key={ id } value={ user.id } selected>{ user.name }</option> :
+              <option key={ id } value={ user.id }>{ user.name }</option>
+          )
+        )
+      }
+      </select>
+    </div>
+    <Link to="users">Cancel</Link>
+  </div>
+)*/
 
 /***/ }),
 /* 123 */
@@ -28729,6 +28743,7 @@ var App = function (_React$Component) {
       var _this3 = this;
 
       selectedManager === '' ? selectedManager = null : selectedManager;
+      //console.log('manager:',selectedManager,'employee:', employeeId)
       _axios2.default.put('/api/users/' + employeeId, { managerId: selectedManager }).then(function (response) {
         return response.data;
       }).then(function (users) {

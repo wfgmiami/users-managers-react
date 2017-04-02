@@ -10,15 +10,13 @@ const UsersEdit = (props) => {
   }
 
   const select = (employee) => (
+
     <div className="panel-body">
       <div className='form-group'>
-        <select className='form-control' id={ employee.id } onChange={ onManagerSelect }>
+        <select className='form-control' defaultValue={ employee.manager ? employee.manager.id : '' } id={ employee.id } onChange={ onManagerSelect }>
         { usersWithNone.map( (user,id) =>(
-            employee.manager && employee.manager.id === user.id ?
-                <option key={ id } value={ user.id } selected>{ user.name }</option> :
-                <option key={ id } value={ user.id }>{ user.name }</option>
-            )
-          )
+            <option key={ id } value={ user.id }>{ user.name }</option>
+          ))
         }
         </select>
       </div>
@@ -33,8 +31,6 @@ const UsersEdit = (props) => {
 }
 
 export default UsersEdit;
-
-
 
 /*const select = (employee) => (
       <div className="panel-body">
@@ -59,3 +55,23 @@ export default UsersEdit;
         <Link to="users">Cancel</Link>
       </div>
     )*/
+
+
+  /*const select = (employee) => (
+
+    <div className="panel-body">
+      {console.log(employee)}
+      <div className='form-group'>
+        <select className='form-control' id={ employee.id } onChange={ onManagerSelect }>
+        { usersWithNone.map( (user,id) =>(
+            employee.manager && employee.manager.id === user.id ?
+                <option key={ id } value={ user.id } selected>{ user.name }</option> :
+                <option key={ id } value={ user.id }>{ user.name }</option>
+            )
+          )
+        }
+        </select>
+      </div>
+      <Link to="users">Cancel</Link>
+    </div>
+  )*/
